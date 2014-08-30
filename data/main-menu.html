@@ -1,0 +1,39 @@
+<html>
+<head>
+<style>
+fieldset {
+    border: 1px solid purple;
+}
+#import-progress {
+    display: none;
+}
+#import-progress li {
+    color: white;
+    list-style-type: none;
+    background-color: green;
+}
+#import-progress li.pending {
+    color: black;
+    background-color: yellow;
+}
+#import-progress li.error {
+    color: white;
+    background-color: red;
+}
+#download-all-json {
+    display: none;
+}
+</style>
+</head>
+<body>
+    <fieldset>
+    <legend>RadNotepad Main Menu</legend>
+    <label for="download-button">Fetch from Yahoo: <input type="button" value="Fetch" id="download-button"/></label>
+    <div id="import-progress">
+    </div>
+    </fieldset>
+    <div>
+        <a download="yahoo-notepad.json" id="download-all-json">Single JSON file.</a>
+    </div>
+</body>
+</html>

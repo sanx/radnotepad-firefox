@@ -1,0 +1,35 @@
+{
+    "license": "MIT", 
+    "name": "radnotepad-firefox", 
+    "repository": {
+        "url": "https://github.com/sanx/radnotepad-firefox", 
+        "type": "git"
+    }, 
+    "author": "gerardo@gerardomoad.com", 
+    "directories": {
+        "test": "test"
+    }, 
+    "bugs": {
+        "url": "https://github.com/sanx/radnotepad-firefox/issues"
+    }, 
+    "version": "0.0.0", 
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    }, 
+    "keywords": [
+        "notepad", 
+        "yahoo", 
+        "yahoo", 
+        "notepad", 
+        "notes", 
+        "radnotepad", 
+        "note", 
+        "backup", 
+        "safe", 
+        "encrypted"
+    ], 
+    "main": "lib/main.js", 
+    "homepage": "https://github.com/sanx/radnotepad-firefox", 
+    "id": "jid1-ItBme678ZpsTxA", 
+    "description": "RadNotepad Firefox Add-on/Extension"
+}
