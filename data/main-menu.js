@@ -2,17 +2,15 @@ var fetchFromYahooButton = document.getElementById("download-button");
 var downloadAllJson = document.getElementById("download-all-json");
 
 fetchFromYahooButton.addEventListener('click', function (event) {
-    self.port.emit('download-button-pressed');
+    event.preventDefault();
+    event.stopPropagation();
+    self.port.emit('fetch-from-yahoo-button-pressed');
+    return false;
 });
 downloadAllJson.addEventListener('click', function (event) {
     event.preventDefault();
-    var clickEvent;
-    clickEvent = document.createEvent("MouseEvent");
-    console.log("window: " + window);
-    console.log("typeof window: " + typeof window);
-    clickEvent.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-    this.dispatchEvent(clickEvent);
-    //this.click();
+    event.stopPropagation();
+    self.port.emit('download-all-json-link-clicked');
     return false;
 });
 
@@ -35,7 +33,7 @@ self.port.on('folder-contents-ok', function (folderInfo, json) {
     folderLi.innerHTML += " (" + folderContents.journals.count + " notes)";
     var downloadAllA = document.getElementById('download-all-json');
     downloadAllA.style.display = 'inline';
-    downloadAllA.href = btoa(JSON.stringify(json, ' ', 4));
+    //downloadAllA.href = 'data:application/json;base64,' + btoa(JSON.stringify(json, ' ', 4));
     //downloadAllA.download = "yahoo-notepad-";
 });
 self.port.on('folder-contents-error', function (folderInfo, json) {
