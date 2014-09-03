@@ -12,11 +12,17 @@
     div fieldset a {
         display: block;
     }
+    div fieldset input[type=text] {
+        width: 100%;
+    }
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     var downloadNameElem = document.querySelector("#json-download .download-name"),
-        downloadLinkElem = document.querySelector("#json-download .download-link");
+        downloadLinkElem = document.querySelector("#json-download .download-link"),
+        now = new Date();
+
+    downloadNameElem.value = "all-notes-" + now.toISOString() + ".json";
 
     downloadNameElem.addEventListener('change', function (ev) {
         downloadLinkElem.download = this.value;
