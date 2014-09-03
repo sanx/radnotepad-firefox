@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+    fieldset legend {
+        font-style: italic;
+    }
+    fieldset.main {
+        border: none;
+    }
+    div fieldset a {
+        display: block;
+    }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var downloadNameElem = document.querySelector("#json-download .download-name"),
+        downloadLinkElem = document.querySelector("#json-download .download-link");
+
+    downloadNameElem.addEventListener('change', function (ev) {
+        downloadLinkElem.download = this.value;
+        downloadLinkElem.setAttribute('download', this.value);
+    });
+});
+</script>
+</head>
+<body>
+<div id="json-download">
+<fieldset class="main">
+<legend>Download</legend>
+    <fieldset>
+    <legend>JSON</legend>
+    <label for="json-download-name">Desired filename: <input id="json-download-name" type="text" class="download-name" value="all-notes.json"/></label>
+    <a download="all-notes.json" class="download-link" href="{{json-download-uri}}">Download</a>
+    </fieldset>
+</fieldset>
+</div>
+</body>
+</html>
