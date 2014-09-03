@@ -1,9 +1,26 @@
 var fetchFromYahooButton = document.getElementById("download-button");
 var downloadAllJson = document.getElementById("download-all-json");
+var fieldsetMain = document.querySelector("fieldset.main");
+var importProgressContainer = document.querySelector('fieldset.loaded');
 
+// globals
+var width,
+    height,
+    json,
+    importProgressEmptyHTML = importProgressContainer.innerHTML;
+
+var reset = function () {
+    json = null;
+    fetchFromYahooButton.disabled = false;
+    downloadAllJson.disabled = true;
+    importProgressContainer.style.display = 'none';
+    importProgressContainer.innerHTML = importProgressEmptyHTML;
+};
 fetchFromYahooButton.addEventListener('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
+    reset();
+    self.port.emit('reset');
     self.port.emit('fetch-from-yahoo-button-pressed');
     return false;
 });
@@ -14,30 +31,50 @@ downloadAllJson.addEventListener('click', function (event) {
     return false;
 });
 
+self.port.on('show', function (dimensions) {
+    width = dimensions.width;
+    height = dimensions.height;
+});
+self.port.on('reset', function (json) {
+    if (json && undefined !== json) {
+        fetchFromYahooButton.disabled = false;
+        downloadAllJson.disabled = false;
+    } else {
+        reset();
+    }
+});
 self.port.on('folders-info', function (foldersInfo) {
-    var importProgressContainer = document.getElementById("import-progress");
     importProgressContainer.style.display = 'block';
+    fetchFromYahooButton.disabled = true;
     foldersInfo.forEach(function (folderInfo) {
-        var folderLi = document.createElement("li");
-        folderLi.id = 'progress-folder-' + folderInfo.id;
-        folderLi.className = "pending";
-        folderLi.innerHTML = folderInfo.name;
-        importProgressContainer.appendChild(folderLi);
+        var folder = document.createElement("div"),
+            folderName = document.createElement("div"),
+            folderLi = document.createElement("progress");
+        folder.id = 'progress-folder-' + folderInfo.id;
+        folder.classList.add("folder");
+        folder.classList.add("pending");
+        folderName.innerHTML = '<span class="name">' + folderInfo.name + '</span>';
+        folder.appendChild(folderName);
+        folder.appendChild(folderLi);
+        importProgressContainer.appendChild(folder);
     });
 });
 
 self.port.on('folder-contents-ok', function (folderInfo, json) {
-    var folderContents = folderInfo.contents;
-    folderLi = document.getElementById('progress-folder-' + folderInfo.id);
-    folderLi.className = "";
-    folderLi.innerHTML += " (" + folderContents.journals.count + " notes)";
-    var downloadAllA = document.getElementById('download-all-json');
-    downloadAllA.style.display = 'inline';
-    //downloadAllA.href = 'data:application/json;base64,' + btoa(JSON.stringify(json, ' ', 4));
-    //downloadAllA.download = "yahoo-notepad-";
+    var folderContents = folderInfo.contents,
+        folder = document.getElementById('progress-folder-' + folderInfo.id),
+        folderLi = folder.getElementsByTagName("progress")[0],
+        folderName = folder.getElementsByTagName("div")[0];
+    folder.classList.remove("pending");
+    folderName.innerHTML += ' <span class="count">(' + folderContents.journals.count + ' notes)</span>';
+    folderLi.value = 1;
+    downloadAllJson.disabled = false;
 });
 self.port.on('folder-contents-error', function (folderInfo, json) {
-    folderLi = document.getElementById('progress-folder-' + folderInfo.id);
-    folderLi.className = "error";
-    folderLi.innerHTML += " (failed)";
+    folder = document.getElementById('progress-folder-' + folderInfo.id);
+    folder.classList.remove("pending");
+    folder.classList.add("error");
+    folderLi.innerHTML += ' <span class="count">(failed)</span>';
+    folderLi.value = 1;
+    downloadAllJson.disabled = false;
 });
