@@ -23,12 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
             downloadLinkElem = document.querySelector("#" + type + "-download .download-link"),
             now = new Date();
 
-        downloadNameElem.value = "all-notes-" + now.toISOString() + "." + type;
-
         downloadNameElem.addEventListener('change', function (ev) {
             downloadLinkElem.download = this.value;
             downloadLinkElem.setAttribute('download', this.value);
         });
+
+        downloadNameElem.value = "all-notes-" + now.toISOString() + "." + type;
+        downloadLinkElem.download = "all-notes-" + now.toISOString() + "." + type;
     });
     var downloadLinkElem = document.querySelector("#zip-download .download-link");
     downloadLinkElem.setAttribute('href', ('{{zip-download-uri}}'));

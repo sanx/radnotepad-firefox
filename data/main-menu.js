@@ -20,7 +20,8 @@ fetchFromYahooButton.addEventListener('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
     reset();
-    self.port.emit('reset');
+    fetchFromYahooButton.disabled = true;
+    self.port.emit('reset', null);
     self.port.emit('fetch-from-yahoo-button-pressed');
     return false;
 });
