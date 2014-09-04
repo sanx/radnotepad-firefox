@@ -18,27 +18,37 @@
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    var downloadNameElem = document.querySelector("#json-download .download-name"),
-        downloadLinkElem = document.querySelector("#json-download .download-link"),
-        now = new Date();
+    ['json', 'zip'].forEach(function (type) {
+        var downloadNameElem = document.querySelector("#" + type + "-download .download-name"),
+            downloadLinkElem = document.querySelector("#" + type + "-download .download-link"),
+            now = new Date();
 
-    downloadNameElem.value = "all-notes-" + now.toISOString() + ".json";
+        downloadNameElem.value = "all-notes-" + now.toISOString() + "." + type;
 
-    downloadNameElem.addEventListener('change', function (ev) {
-        downloadLinkElem.download = this.value;
-        downloadLinkElem.setAttribute('download', this.value);
+        downloadNameElem.addEventListener('change', function (ev) {
+            downloadLinkElem.download = this.value;
+            downloadLinkElem.setAttribute('download', this.value);
+        });
     });
+    var downloadLinkElem = document.querySelector("#zip-download .download-link");
+    downloadLinkElem.setAttribute('href', ('{{zip-download-uri}}'));
 });
 </script>
 </head>
 <body>
-<div id="json-download">
+<div>
 <fieldset class="main">
 <legend>Download</legend>
-    <fieldset>
+    <fieldset id="json-download">
     <legend>JSON</legend>
     <label for="json-download-name">Desired filename: <input id="json-download-name" type="text" class="download-name" value="all-notes.json"/></label>
     <a download="all-notes.json" class="download-link" href="{{json-download-uri}}">Download</a>
+    </fieldset>
+
+    <fieldset id="zip-download">
+    <legend>Zip</legend>
+    <label for="zip-download-name">Desired filename: <input id="zip-download-name" type="text" class="download-name" value="all-notes.zip"/></label>
+    <a download="all-notes.zip" class="download-link" href="#">Download</a>
     </fieldset>
 </fieldset>
 </div>
