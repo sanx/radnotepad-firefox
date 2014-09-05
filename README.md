@@ -1,6 +1,8 @@
 "Rad Notepad" Yahoo Notepad Exporter Firefox Addon
 ====
 
+![Rad Notepad Yahoo Notepad Exporter Firefox Addon](doc/radnotepad_logo-128.png "Rad Notepad Yahoo Notepad Exporter Firefox Addon")
+
 A Firefox restartless Addon that will call the same webservice endpoints that
 the official Yahoo Notepad/Calendar web clients do to fetch all your notes,
 and make them available to you as a raw JSON file, and as a .zip file
