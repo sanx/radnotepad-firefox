@@ -53,3 +53,8 @@ as either a raw JSON file, or as a .zip file containing one file per note.
 *Tip*: On the download page, you can change the name of the file with your
 notes that will be saved to your computer by changing the filename on the
 provided form fields.
+
+License
+----
+
+The content of this project itself is copyright (c) Gerardo Moad, and the underlying source code used to generate .zip files in JavaScript is licensed under the MIT license.

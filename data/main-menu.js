@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2014 Gerardo Moad
+ */
 var fetchFromYahooButton = document.getElementById("download-button");
 var downloadAllJson = document.getElementById("download-all-json");
 var fieldsetMain = document.querySelector("fieldset.main");
