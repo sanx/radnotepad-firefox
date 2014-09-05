@@ -24,6 +24,7 @@ User Guide
 you can open the Yahoo Notepad page without being prompted for a password).
 3.   Click this extension's button, which should be on the browser's Toolbar.
 ![Firefox Toolbar with "Rad Notepad" Yahoo Notepad Exporter Firefox Addon button](doc/toolbar_with_addon_button.png "Firefox Toolbar with "Rad Notepad" Yahoo Notepad Exporter Firefox Addon button")
+
 ![Close-up of the "Rad Notepad" Yahoo Notepad Exporter Firefox Addon button](doc/closeup_addon_button.png "Close-up of the "Rad Notepad" Yahoo Notepad Exporter Firefox Addon button")
 4.   Click on the "Yahoo Notepad" button under the "Import" menu. This will
 trigger the importing of all your Yahoo Notepad notes into the Addon (just
