@@ -37,6 +37,7 @@ Notes" button under the "Export" menu will become enabled.
 browser tab will open that contains links to save your imported notes data
 as either a raw JSON file, or as a .zip file containing one file per note.
 ![New tab opened by Addon with links to save imported notes](doc/new_tab_with_links_to_save_files.png "New tab opened by Addon with links to save imported notes")
+
 *Tip*: On the download page, you can change the name of the file with your
 notes that will be saved to your computer by changing the filename on the
 provided form fields.
