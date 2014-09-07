@@ -58,11 +58,14 @@ self.port.on('folders-info', function (foldersInfo) {
     foldersInfo.forEach(function (folderInfo) {
         var folder = document.createElement("div"),
             folderName = document.createElement("div"),
-            folderLi = document.createElement("progress");
+            folderLi = document.createElement("progress"),
+            folderNameSpan = document.createElement("span");
         folder.id = 'progress-folder-' + folderInfo.id;
         folder.classList.add("folder");
         folder.classList.add("pending");
-        folderName.innerHTML = '<span class="name">' + folderInfo.name + '</span>';
+        folderNameSpan.className = "name";
+        folderNameSpan.textContent = folderInfo.name;
+        folderName.appendChild(folderNameSpan);
         folder.appendChild(folderName);
         folder.appendChild(folderLi);
         importProgressContainer.appendChild(folder);
