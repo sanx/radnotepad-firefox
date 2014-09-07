@@ -10,14 +10,19 @@ var importProgressContainer = document.querySelector('fieldset.loaded');
 var width,
     height,
     json,
-    importProgressEmptyHTML = importProgressContainer.innerHTML;
+    importProgressElementOriginalChildren = Array.prototype.map.call(importProgressContainer.children, function (child) {
+        return child;
+    });
 
 var reset = function () {
     json = null;
     fetchFromYahooButton.disabled = false;
     downloadAllJson.disabled = true;
     importProgressContainer.style.display = 'none';
-    importProgressContainer.innerHTML = importProgressEmptyHTML;
+    importProgressContainer.innerHTML = '';
+    Array.prototype.forEach.call(importProgressElementOriginalChildren, function (child) {
+        importProgressContainer.appendChild(child);
+    });
 };
 fetchFromYahooButton.addEventListener('click', function (event) {
     event.preventDefault();

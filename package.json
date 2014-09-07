@@ -1,6 +1,6 @@
 {
-  "license": "MIT",
-  "name": "radnotepad-firefox",
+  "license": "Copyright",
+  "name": "radnotepad-yahoo-notepad-exporter-addon",
   "repository": {
     "url": "https://github.com/sanx/radnotepad-firefox",
     "type": "git"
@@ -31,7 +31,7 @@
   "main": "lib/main.js",
   "homepage": "https://github.com/sanx/radnotepad-firefox",
   "id": "jid1-ItBme678ZpsTxA",
-  "description": "RadNotepad Firefox Add-on/Extension",
+  "description": "RadNotepad Yahoo Notepad Exporter Addon",
   "dependencies": {
   }
 }
