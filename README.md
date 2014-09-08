@@ -58,3 +58,4 @@ License
 ----
 
 The content of this project itself is copyright (c) Gerardo Moad, and the underlying source code used to generate .zip files in JavaScript is licensed under the MIT license.
+
