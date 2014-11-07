@@ -19,7 +19,7 @@ var reset = function () {
     fetchFromYahooButton.disabled = false;
     downloadAllJson.disabled = true;
     importProgressContainer.style.display = 'none';
-    importProgressContainer.innerHTML = '';
+    importProgressContainer.textContent = '';
     Array.prototype.forEach.call(importProgressElementOriginalChildren, function (child) {
         importProgressContainer.appendChild(child);
     });
@@ -76,17 +76,25 @@ self.port.on('folder-contents-ok', function (folderInfo, json) {
     var folderContents = folderInfo.contents,
         folder = document.getElementById('progress-folder-' + folderInfo.id),
         folderLi = folder.getElementsByTagName("progress")[0],
-        folderName = folder.getElementsByTagName("div")[0];
+        folderName = folder.getElementsByTagName("div")[0],
+        folderCountSpan = document.createElement("span");
     folder.classList.remove("pending");
-    folderName.innerHTML += ' <span class="count">(' + folderContents.journals.count + ' notes)</span>';
+    folderCountSpan.classList.add("count");
+    folderCountSpan.textContent = '(' + folderContents.journals.count + ' notes)';
+    folderName.appendChild(folderCountSpan);
     folderLi.value = 1;
     downloadAllJson.disabled = false;
 });
 self.port.on('folder-contents-error', function (folderInfo, json) {
-    folder = document.getElementById('progress-folder-' + folderInfo.id);
+    var folder = document.getElementById('progress-folder-' + folderInfo.id),
+        filderLi = folder.getElementsByTagName("progress")[0],
+        folderName = folder.getElementsByTagName("div")[0],
+        folderCountSpan = document.createElement("span");
     folder.classList.remove("pending");
     folder.classList.add("error");
-    folderLi.innerHTML += ' <span class="count">(failed)</span>';
+    folderCountSpan.classList.add("count");
+    folderCountSpan.textContent = '(failed)';
+    folderName.appendChild(folderCountSpan);
     folderLi.value = 1;
     downloadAllJson.disabled = false;
 });
